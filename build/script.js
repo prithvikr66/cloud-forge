@@ -29,15 +29,14 @@ const init = async () => {
 
     for (const file of folders) {
       const filePath = path.join(distFolderPath, file);
+      console.log(filePath);
       if (fs.lstatSync(filePath).isDirectory()) continue;
 
       const command = new PutObjectCommand({
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: `${PROJECT_ID}/${file}`,
-        Body: fs.createReadStream(
-          path.join(__dirname, "output", "compressed.zip")
-        ),
-        ContentType: lookup(path.join(__dirname, "output", "compressed.zip")),
+        Body: fs.createReadStream(filePath),
+        ContentType: lookup(filePath),
       });
 
       await s3Client.send(command);
