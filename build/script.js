@@ -17,28 +17,26 @@ const s3Client = new S3Client({
   region: process.env.AWS_S3_REGION,
 });
 
-const zipFolder = async(srcFilePath , outputFilePath) =>{
+// const zipFolder = async(srcFilePath , outputFilePath) =>{
 
-  try{
-    const outputFile = fs.createWriteStream(outputFilePath);
-    const archieve = archiever("zip" , {
-      zlib:{
-        level:9
-      }
-    });
+//   try{
+//     const outputFile = fs.createWriteStream(outputFilePath);
+//     const archieve = archiever("zip" , {
+//       zlib:{
+//         level:9
+//       }
+//     });
 
-    outputFile.on("close",()=>console.log("Archieve has been completed"));
-    archieve.pipe(outputFile);
-    archieve.directory(srcFilePath,false);
-    archieve.finalize();
-    archieve.on("error",(err)=>console.log(err))
+//     outputFile.on("close",()=>console.log("Archieve has been completed"));
+//     archieve.pipe(outputFile);
+//     archieve.directory(srcFilePath,false);
+//     archieve.finalize();
+//     archieve.on("error",(err)=>console.log(err))
 
-  }catch(err) {
-    console.log(err)
-}
-}
-
-
+//   }catch(err) {
+//     console.log(err)
+// }
+// }
 // const unzippedFile = fs.createReadStream(path.join(__dirname , "output", "compressed.zip")).pipe(unzipper.Extract({path:path.join(__dirname , "output" , "unzipped")}))
 
 
@@ -68,8 +66,6 @@ const init = async() => {
       ContentType: lookup(path.join(__dirname , "output" ,"compressed.zip")),
     });
 
-   
-     
     const upload = await s3Client.send(command)
     console.log(`${filePath.split("dist/")[1]} file uploaded`)
 
