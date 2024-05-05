@@ -20,6 +20,8 @@
     "unzipper": "^0.10.14"
   },
   "devDependencies": {
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^20.12.8",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
     "eslint": "^8.57.0",
