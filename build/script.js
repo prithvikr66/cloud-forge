@@ -29,7 +29,6 @@ const init = async () => {
 
     for (const file of folders) {
       const filePath = path.join(distFolderPath, file);
-      console.log(filePath);
       if (fs.lstatSync(filePath).isDirectory()) continue;
 
       const command = new PutObjectCommand({
